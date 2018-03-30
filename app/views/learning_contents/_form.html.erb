@@ -1,0 +1,37 @@
+<%= form_with(model: learning_content, local: true) do |form| %>
+  <% if learning_content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(learning_content.errors.count, "error") %> prohibited this learning_content from being saved:</h2>
+
+      <ul>
+      <% learning_content.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :learning_content_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :learning_content_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_area :url, id: :learning_content_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :course_id %>
+    <%= form.text_field :course_id, id: :learning_content_course_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
