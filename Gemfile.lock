@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/bokmann/font-awesome-rails.git
+  revision: abf7780df6af58a2972f7fcdcfc6db0508e30d92
+  branch: master
+  specs:
+    font-awesome-rails (4.7.0.3)
+      railties (>= 3.2, < 5.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -197,11 +205,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (~> 3.3)
+  bootstrap-sass (~> 3.3.6)
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise (~> 4.1)
+  font-awesome-rails!
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
