@@ -239,9 +239,11 @@ String.prototype.repeat = function (num) {
         source: states.ttAdapter()
       });
     }
-
+    $('.todo li:first-child').addClass('todo-done');
     // Todo list
     $('.todo').on('click', 'li', function () {
+      // $('.todo li:first').removeClass('todo-done');
+      $('.todo li').removeClass('todo-done');
       $(this).toggleClass('todo-done');
     });
 

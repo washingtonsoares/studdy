@@ -12,10 +12,12 @@
 //
 //= require jquery3
 //= require bootstrap-sprockets
+//= require bootstrap.min
 //= require rails-ujs
 //= require turbolinks
 //= require vendor/video
 //= require flat-ui-pro.js
 //= require prettify
 //= require theme
+//= require plyr
 //= require_tree .
