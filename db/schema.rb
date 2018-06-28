@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180625225443) do
+ActiveRecord::Schema.define(version: 20180628231733) do
 
   create_table "colleges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nome"
@@ -46,14 +46,6 @@ ActiveRecord::Schema.define(version: 20180625225443) do
     t.index ["course_id"], name: "index_learning_contents_on_course_id"
   end
 
-  create_table "student_classes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "nome"
-    t.bigint "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_student_classes_on_course_id"
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -83,10 +75,8 @@ ActiveRecord::Schema.define(version: 20180625225443) do
   end
 
   add_foreign_key "courses", "colleges"
-  add_foreign_key "enrollments", "student_classes"
   add_foreign_key "enrollments", "users"
   add_foreign_key "learning_contents", "courses"
-  add_foreign_key "student_classes", "courses"
   add_foreign_key "watched_media", "courses"
   add_foreign_key "watched_media", "learning_contents"
   add_foreign_key "watched_media", "users"
