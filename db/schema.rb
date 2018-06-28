@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330213729) do
+ActiveRecord::Schema.define(version: 20180625225443) do
 
   create_table "colleges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nome"
@@ -71,9 +71,23 @@ ActiveRecord::Schema.define(version: 20180330213729) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "watched_media", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.bigint "learning_content_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_watched_media_on_course_id"
+    t.index ["learning_content_id"], name: "index_watched_media_on_learning_content_id"
+    t.index ["user_id"], name: "index_watched_media_on_user_id"
+  end
+
   add_foreign_key "courses", "colleges"
   add_foreign_key "enrollments", "student_classes"
   add_foreign_key "enrollments", "users"
   add_foreign_key "learning_contents", "courses"
   add_foreign_key "student_classes", "courses"
+  add_foreign_key "watched_media", "courses"
+  add_foreign_key "watched_media", "learning_contents"
+  add_foreign_key "watched_media", "users"
 end

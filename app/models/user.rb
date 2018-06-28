@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :enrollments
   has_many :student_classes, through: :enrollments
+  has_many :watched_media
 end

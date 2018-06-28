@@ -4,17 +4,17 @@
   <h3 class="demo-panel-title mbl pbl"><%= @course.name %></h3>
   <div class="row demo-samples">
     <div class="col-xs-8">
-      <div
-        id="player"
-        data-plyr-provider="youtube"
-        data-plyr-embed-id=<%= getYouTubeVideoID(@course.learning_contents.first.url) %></div>
-      </div>
+      <%= content_tag :div, id: "player",
+                      class: "strong",
+                      "data-plyr-provider": "youtube",
+                      "data-plyr-embed-id": getYouTubeVideoID(@course.learning_contents.first.url) do -%>
+      <% end -%>
     </div> <!-- /video -->
     <div class="col-xs-4">
       <div class="todo">
         <ul>
           <% @course.learning_contents.each do |learning_content| %>
-            <li data-video-id=<%= getYouTubeVideoID(learning_content.url) %>>
+            <li data-video-id=<%= getYouTubeVideoID(learning_content.url) %> data-learning-content-id=<%= learning_content.id %>>
               <div class="todo-icon fui-youtube"></div>
               <div class="todo-content">
                 <h4 class="todo-name">
