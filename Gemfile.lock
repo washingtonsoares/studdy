@@ -116,6 +116,7 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
+    plyr-rails (3.3.7)
     public_suffix (3.0.2)
     puma (3.11.3)
     rack (2.0.4)
@@ -223,6 +224,7 @@ DEPENDENCIES
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.3.18, < 0.5)
+  plyr-rails
   puma (~> 3.7)
   rails (~> 5.1.5)
   rails-erd
@@ -237,4 +239,4 @@ DEPENDENCIES
   youtube_id
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

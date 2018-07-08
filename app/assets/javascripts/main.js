@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on("turbolinks:load", function() {
     const player = new Plyr('#player')
     const timeSpent = []
     const minPercentage = 50

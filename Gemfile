@@ -10,6 +10,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails", github: "bokmann/font-awesome-rails", branch: "master"
 gem 'jquery-rails'
 gem 'youtube_id'
+gem 'plyr-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 # Use mysql as the database for Active Record
