@@ -42,6 +42,8 @@ $(document).on("turbolinks:load", function() {
         getPercentage(timeSpent)
     })
 
+    $('.todo ul li:first').addClass("todo-done")
+
     $('.todo ul li').on('click', function(){
         const videoURL = $(this).data('video-id')
         const contentID = $(this).data('learning-content-id')

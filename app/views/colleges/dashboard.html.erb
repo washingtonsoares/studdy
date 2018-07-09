@@ -1,0 +1,23 @@
+<section class="wrapper">
+  <div class="container-fostrap">
+    <div class="content">
+      <div class="row">
+        <% @college.courses.each do |course|%>
+          <div class="col-xs-12 col-sm-3">
+            <div class="card">
+              <%= link_to course_path(course), class: "img-card" do %>
+                <%= image_tag(course.thumbnail.blank? ?  "default-course-thumbnail.png" : course.thumbnail) %>
+              <% end %>
+              <div class="card-content text-center">
+                <%= course.name %>
+              </div>
+              <div class="card-read-more">
+                <small>41 alunos</small>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
