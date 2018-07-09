@@ -1,16 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
-  before_action :set_user
+  include CollegesHelper
+  before_action :set_user, :set_college
 
   private
 
   def set_college
-    referer = request.host_with_port
-
-    @college = College.find_by_url(referer)
-
-    redirect_to "/404.html" if @college.nil?
+    get_college_from_request(request)
   end
 
   def set_user
