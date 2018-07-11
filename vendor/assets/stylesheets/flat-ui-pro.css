@@ -8535,4 +8535,91 @@ input.todo-search-field::-webkit-input-placeholder {
     background: #bdc3c7 !important;
     }
   }
+
+
+.login {
+  background: url(../images/login/imac.png) 0 0 no-repeat;
+  background-size: 940px 778px;
+  color: white;
+  margin-bottom: 77px;
+  padding: 38px 38px 267px;
+  position: relative;
+}
+
+.login-screen {
+  background-color: #1abc9c;
+  min-height: 473px;
+  padding: 123px 199px 33px 306px;
+}
+
+.login-icon {
+  left: 200px;
+  position: absolute;
+  top: 160px;
+  width: 96px;
+}
+
+.login-icon > img {
+  display: block;
+  margin-bottom: 6px;
+  width: 100%;
+}
+
+.login-icon > h4 {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 34px;
+  opacity: .95;
+}
+
+.login-icon > h4 small {
+  color: inherit;
+  display: block;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+.login-form {
+  background-color: #edeff1;
+  padding: 24px 23px 20px;
+  position: relative;
+  border-radius: 6px;
+}
+
+.login-form .control-group {
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.login-form .login-field {
+  border-color: transparent;
+  font-size: 17px;
+  text-indent: 3px;
+}
+
+.login-form .login-field:focus {
+  border-color: #1abc9c;
+}
+
+.login-form .login-field:focus + .login-field-icon {
+  color: #1abc9c;
+}
+
+.login-form .login-field-icon {
+  color: #bfc9ca;
+  font-size: 16px;
+  position: absolute;
+  right: 15px;
+  top: 3px;
+  transition: all .25s;
+}
+
+.login-link {
+  color: #bfc9ca;
+  display: block;
+  font-size: 13px;
+  margin-top: 15px;
+  text-align: center;
+}
+
 /*# sourceMappingURL=flat-ui-pro.css.map */

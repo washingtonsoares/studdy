@@ -3,3 +3,32 @@
 @import "flat-ui-pro";
 @import "docs";
 @import "plyr";
+
+html {
+  width: 100%;
+  height: 100%;
+  body {
+    width: 100%;
+    height: 100%;
+  }
+  .container-fluid {
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+  }
+}
+
+.image-login {
+  width: 145px;
+  height: 149px;
+  margin-left: 15px;
+}
+
+.studdy-container-login {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  background-color: #48b99b;
+}
