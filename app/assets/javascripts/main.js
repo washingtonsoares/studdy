@@ -13,7 +13,6 @@ $(document).on("turbolinks:load", function() {
         }
 
         percent = Math.round(percent / timeSpent.length * 100)
-
         if (percent > minPercentage) {
             alert('50%')
         }
@@ -37,9 +36,13 @@ $(document).on("turbolinks:load", function() {
 
     player.on('timeupdate', event => {
         const instance = event.detail.plyr
-        timeSpent[Math.ceil(instance.currentTime)] = true
+        const currentTime = Math.ceil(instance.currentTime)
+        
+        if (currentTime > 0) {
+            timeSpent[currentTime] = true
 
-        getPercentage(timeSpent)
+            getPercentage(timeSpent)
+        }
     })
 
     $('.todo ul li:first').addClass("todo-done")

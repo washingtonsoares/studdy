@@ -1,6 +1,6 @@
 class LearningContentsController < ApplicationController
   before_action :set_learning_content, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /learning_contents
   # GET /learning_contents.json
   def index
