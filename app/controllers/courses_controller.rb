@@ -1,8 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  # GET /courses
-  # GET /courses.json
+  before_action :authenticate_user!, except: [:save_watched_media]
+
   def index
     @courses = Course.all
   end
@@ -15,6 +14,20 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+  end
+
+  def save_watched_media
+    @watchedMedia = WatchedMedia.new(watched_media_params)
+
+    found_watched_media = WatchedMedia.find_by(user_id: @watchedMedia.user_id, learning_content_id: @watchedMedia.learning_content_id, course_id: @watchedMedia.course_id)
+
+    respond_to do |format|
+      if found_watched_media.nil? and @watchedMedia.save
+        format.json { render json: @watchedMedia.to_json, status: :ok }
+      else
+        format.json { render json: @watchedMedia.errors, status: :unprocessable_entity  }
+      end
+    end
   end
 
   # GET /courses/1/edit
@@ -70,5 +83,9 @@ class CoursesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
       params.require(:course).permit(:name, :description)
+    end
+
+    def watched_media_params
+      params.require(:watched_media).permit(:user_id, :course_id, :learning_content_id)
     end
 end

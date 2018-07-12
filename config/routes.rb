@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'colleges#dashboard'
 
-
   get 'dashboard', to: 'colleges#dashboard'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  post "/create-watched-media" => "courses#save_watched_media"
 end

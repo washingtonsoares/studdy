@@ -1,7 +1,31 @@
+function buildWatchedMedia() {
+    const user_id = $('nav').data('current-user')
+    const learning_content_id = $('.todo-done').data('learning-content-id')
+    const course_id = $("#course-container").data("course-id")
+
+    return {
+        watched_media: {
+            user_id,
+            course_id,
+            learning_content_id
+        }
+    }
+}
+
+function saveWatchedMedia() {
+    const watchedMedia = buildWatchedMedia()
+
+    $.ajax({
+        type: "POST",
+        url: "/create-watched-media",
+        data: watchedMedia
+    });
+}
+
 $(document).on("turbolinks:load", function() {
     const player = new Plyr('#player')
     const timeSpent = []
-    const minPercentage = 50
+    const minPercentage = 1
 
     function getPercentage(timeSpent) {
         var percent = 0
@@ -14,15 +38,7 @@ $(document).on("turbolinks:load", function() {
 
         percent = Math.round(percent / timeSpent.length * 100)
         if (percent > minPercentage) {
-            alert('50%')
-        }
-    }
-
-
-    function updateURL(videoID) {
-        if (history.pushState) {
-            const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?video=' + videoID
-            window.history.pushState({ path: newurl }, '', newurl)
+            saveWatchedMedia()
         }
     }
 
@@ -47,11 +63,9 @@ $(document).on("turbolinks:load", function() {
 
     $('.todo ul li:first').addClass("todo-done")
 
+
     $('.todo ul li').on('click', function(){
         const videoURL = $(this).data('video-id')
-        const contentID = $(this).data('learning-content-id')
-
-        updateURL(contentID)
 
         player.source = {
             type: 'video',
