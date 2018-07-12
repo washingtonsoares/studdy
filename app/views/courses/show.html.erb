@@ -1,6 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<div class="container">
+<div class="container" id="course-container" data-course-id="<%= @course.id %>">
   <h3 class="demo-panel-title mbl pbl"><%= @course.name %></h3>
   <% if @course.learning_contents.empty? %>
     <div class="alert alert-success ">

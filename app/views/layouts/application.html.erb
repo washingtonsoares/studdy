@@ -16,7 +16,7 @@
   
     <div class="container">
       <% if user_signed_in? and @college.present? %>
-        <nav class="navbar navbar-default navbar-lg" role="navigation">
+        <nav class="navbar navbar-default navbar-lg" role="navigation" data-current-user="<%= current_user.id %>">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-02">
               <span class="sr-only">Toggle navigation</span>
