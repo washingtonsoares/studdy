@@ -20,4 +20,5 @@
 //= require prettify
 //= require theme
 //= require plyr
+//= require toastr
 //= require_tree .

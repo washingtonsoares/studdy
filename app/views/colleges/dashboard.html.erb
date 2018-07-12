@@ -1,6 +1,10 @@
 <section class="wrapper">
-  <div class="container-fostrap">
-    <div class="content">
+
+  <div class="container-fostrap" style="position:relative;">
+    <% if @college.courses.any? && current_user.role == 'admin' %>
+      <%= link_to 'Cadastrar conteúdo de aprendizado', new_course_path, class:'btn btn-default btn-info btn-wide', style: "position: absolute;right: 20px;" %>
+    <% end %>
+    <div class="content" style="margin-top: 50px;">
       <% if @college.courses.empty? && current_user.role == 'admin' %>
         <div class="alert alert-success ">
           <h4>Ainda não existem cursos cadastrados! 😕</h4>

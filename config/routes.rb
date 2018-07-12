@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'colleges#dashboard'
   post "/create-watched-media" => "courses#save_watched_media"
+
+  get 'get-watched-medias/:course_id', to: 'courses#get_watched_medias'
 end

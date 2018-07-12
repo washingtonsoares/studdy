@@ -1,6 +1,6 @@
 class LearningContentsController < ApplicationController
   before_action :set_learning_content, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:create]
   # GET /learning_contents
   # GET /learning_contents.json
   def index
@@ -25,10 +25,11 @@ class LearningContentsController < ApplicationController
   # POST /learning_contents.json
   def create
     @learning_content = LearningContent.new(learning_content_params)
+    @learning_content.course_id = 1
 
     respond_to do |format|
       if @learning_content.save
-        format.html { redirect_to @learning_content, notice: 'Learning content was successfully created.' }
+        format.html { redirect_to course_path(@learning_content.course), notice: 'Learning content was successfully created.' }
         format.json { render :show, status: :created, location: @learning_content }
       else
         format.html { render :new }
@@ -64,7 +65,7 @@ class LearningContentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_learning_content
-      @learning_content = LearningContent.find(params[:id])
+        @learning_content = LearningContent.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

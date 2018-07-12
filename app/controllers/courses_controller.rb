@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:save_watched_media]
+  before_action :authenticate_user!, except: [:get_watched_medias, :save_watched_media]
 
   def index
     @courses = Course.all
@@ -14,6 +14,14 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+  end
+
+  def get_watched_medias
+    @watchedMedias = WatchedMedia.where(course_id: params[:course_id])
+
+    respond_to do |format|
+      format.json { render json: @watchedMedias.to_json, status: :ok }
+    end
   end
 
   def save_watched_media
@@ -38,11 +46,12 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params)
+    @course.college_id = 1
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render :show, status: :created, location: @course }
+        format.html { redirect_to dashboard_path, notice: 'Course was successfully created.' }
+        format.json { render :show, status: :created, location: dashboard_path }
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }

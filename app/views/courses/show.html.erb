@@ -1,12 +1,15 @@
-<div class="container" id="course-container" data-course-id="<%= @course.id %>">
+<div class="container" style="position:relative;" id="course-container" data-course-id="<%= @course.id %>">
   <h3 class="demo-panel-title mbl pbl"><%= @course.name %></h3>
+  <% if @course.learning_contents.any? && current_user.role == 'admin' %>
+    <%= link_to 'Cadastrar conteúdo de aprendizado', new_learning_content_path, class:'btn btn-default btn-success btn-wide', style: "position: absolute;top: 45px;right: 30px;" %>
+  <% end %>
   <% if @course.learning_contents.empty? && current_user.role == 'admin' %>
     <div class="alert alert-success ">
       <h4>Ainda não existem conteúdos de aprendizado cadastrados para esse curso! 😕</h4>
       <p>Cadastre agora mesmo vídeos, imagens, documentos ou questionários online.</p>
       <%= link_to 'Cadastrar conteúdo de aprendizado', new_learning_content_path, class:'btn btn-default btn-info btn-wide' %>
     </div>
-  <% elsif @course.learning_contents.empty? && current_user.role == 'student'%>
+  <% elsif @course.learning_contents.empty? %>
     <div class="alert alert-success ">
       <h4>Ainda não existem conteúdos de aprendizado cadastrados para esse curso! 😕</h4>
     </div>
@@ -20,6 +23,8 @@
         <% end -%>
       </div> <!-- /video -->
       <div class="col-xs-4">
+
+
         <div class="todo">
           <ul>
             <% @course.learning_contents.each do |learning_content| %>

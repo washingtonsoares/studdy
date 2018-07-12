@@ -1,3 +1,7 @@
+const videosWatched = [
+
+]
+
 function buildWatchedMedia() {
     const user_id = $('nav').data('current-user')
     const learning_content_id = $('.todo-done').data('learning-content-id')
@@ -15,14 +19,22 @@ function buildWatchedMedia() {
 function saveWatchedMedia() {
     const watchedMedia = buildWatchedMedia()
 
-    $.ajax({
-        type: "POST",
-        url: "/create-watched-media",
-        data: watchedMedia
-    });
+   if(!videosWatched.includes(watchedMedia.learning_content_id)) {
+       videosWatched.push(watchedMedia.learning_content_id)
+
+       $.ajax({
+           type: "POST",
+           url: "/create-watched-media",
+           data: watchedMedia
+       });
+
+       toastr.success('Você acaba de ganhar 10 pontos!')
+   }
+
 }
 
 $(document).on("turbolinks:load", function() {
+
     const player = new Plyr('#player')
     const timeSpent = []
     const minPercentage = 1
@@ -61,12 +73,10 @@ $(document).on("turbolinks:load", function() {
         }
     })
 
-    $('.todo ul li:first').addClass("todo-done")
-
 
     $('.todo ul li').on('click', function(){
         const videoURL = $(this).data('video-id')
-
+        $(this).addClass("todo-done")
         player.source = {
             type: 'video',
             sources: [{
@@ -75,4 +85,10 @@ $(document).on("turbolinks:load", function() {
             }]
         }
     })
+
+    const course_id = $("#course-container").data("course-id")
+
+    if(course_id) {
+
+    }
 })
