@@ -11,27 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :nome %>
-    <%= form.text_field :nome, id: :learning_content_nome %>
+    <%= form.text_field :nome, id: :learning_content_nome, class:'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :learning_content_description %>
+    <%= form.text_area :description, id: :learning_content_description, class:'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :url %>
-    <%= form.text_area :url, id: :learning_content_url %>
+    <%= form.text_area :url, id: :learning_content_url, class:'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :course_id %>
-    <%= form.text_field :course_id, id: :learning_content_course_id %>
+    <%= form.text_field :course_id, id: :learning_content_course_id, class:'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit 'Cadastrar Conteudo', class:"btn btn-primary" %>
 <% end %>

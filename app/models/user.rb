@@ -5,5 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :enrollments
-  has_many :student_classes, through: :enrollments
+  has_many :courses, through: :enrollments
+  has_many :watched_media
 end

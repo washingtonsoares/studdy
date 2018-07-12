@@ -1,0 +1,37 @@
+<section class="wrapper">
+  <div class="container-fostrap">
+    <div class="content">
+      <% if @college.courses.empty? && current_user.role == 'admin' %>
+        <div class="alert alert-success ">
+          <h4>Ainda não existem cursos cadastrados! 😕</h4>
+          <p>Cadastre agora mesmo seus cursos.</p>
+          <%= link_to 'Cadastrar conteúdo de aprendizado', new_course_path, class:'btn btn-default btn-info btn-wide' %>
+        </div>
+      <% elsif @college.courses.empty? && current_user.role == 'student'%>
+        <div class="alert alert-success ">
+          <h4>Ainda não existem cursos cadastrados! 😕</h4>
+          <p> Clique no link abaixo e insira a chave de inscrição para se cadastrar.</p>
+          <%= link_to 'Cadastrar-se em um curso', new_course_path, class:'btn btn-default btn-info btn-wide' %>
+        </div>
+      <% else %>
+        <div class="row">
+          <% @college.courses.each do |course|%>
+            <div class="col-xs-12 col-sm-3">
+              <div class="card">
+                <%= link_to course_path(course), class: "img-card" do %>
+                  <%= image_tag(course.thumbnail.blank? ?  "default-course-thumbnail.png" : course.thumbnail) %>
+                <% end %>
+                <div class="card-content text-center">
+                  <%= course.name %>
+                </div>
+                <div class="card-read-more">
+                  <small>41 alunos</small>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</section>

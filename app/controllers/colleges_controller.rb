@@ -1,6 +1,7 @@
 class CollegesController < ApplicationController
   before_action :set_college, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  include CollegesHelper
   # GET /colleges
   # GET /colleges.json
   def index
@@ -10,6 +11,10 @@ class CollegesController < ApplicationController
   # GET /colleges/1
   # GET /colleges/1.json
   def show
+  end
+
+  def dashboard
+    get_college_from_request(request)
   end
 
   # GET /colleges/new

@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180330213729) do
+ActiveRecord::Schema.define(version: 20180712005245) do
 
   create_table "colleges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "url"
   end
 
   create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -24,6 +25,8 @@ ActiveRecord::Schema.define(version: 20180330213729) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "college_id"
+    t.string "thumbnail"
+    t.string "registrationkey"
     t.index ["college_id"], name: "index_courses_on_college_id"
   end
 
@@ -46,14 +49,6 @@ ActiveRecord::Schema.define(version: 20180330213729) do
     t.index ["course_id"], name: "index_learning_contents_on_course_id"
   end
 
-  create_table "student_classes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "nome"
-    t.bigint "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_student_classes_on_course_id"
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -67,13 +62,27 @@ ActiveRecord::Schema.define(version: 20180330213729) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "watched_media", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.bigint "learning_content_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_watched_media_on_course_id"
+    t.index ["learning_content_id"], name: "index_watched_media_on_learning_content_id"
+    t.index ["user_id"], name: "index_watched_media_on_user_id"
+  end
+
   add_foreign_key "courses", "colleges"
-  add_foreign_key "enrollments", "student_classes"
   add_foreign_key "enrollments", "users"
   add_foreign_key "learning_contents", "courses"
-  add_foreign_key "student_classes", "courses"
+  add_foreign_key "watched_media", "courses"
+  add_foreign_key "watched_media", "learning_contents"
+  add_foreign_key "watched_media", "users"
 end
